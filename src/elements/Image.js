@@ -32,7 +32,7 @@ const Image = (props) => {
 
 Image.defaultProps = {
     shape: 'rectangle',
-    src: 'https://i.pinimg.com/236x/87/b1/3e/87b13e11d3fa05c3cf5b43d04c61e750.jpg',
+    src: 'http://img.insight.co.kr/static/2018/09/12/700/z7n04ul8ig3y27w6l6ok.jpg',
     size: 36,
 };
 

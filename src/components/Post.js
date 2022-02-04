@@ -21,10 +21,6 @@ const Post = (props) => {
                 <Grid padding='16px'>
                     <Text bold>댓글 {props.comment_cnt}개</Text>
                 </Grid>
-                <div>user profile / user name / insert datetime </div>
-                <div>contents</div>
-                <div>image</div>
-                <div>comment cnt</div>
             </Grid>
         </React.Fragment>
     )
@@ -33,10 +29,10 @@ const Post = (props) => {
 Post.defaultProps = {
     user_info : {
       user_name : '민재',
-      user_profile : 'https://i.pinimg.com/236x/87/b1/3e/87b13e11d3fa05c3cf5b43d04c61e750.jpg',
+      user_profile : 'http://img.insight.co.kr/static/2018/09/12/700/z7n04ul8ig3y27w6l6ok.jpg',
     },
-    image_url: 'https://i.pinimg.com/236x/87/b1/3e/87b13e11d3fa05c3cf5b43d04c61e750.jpg',
-    contents : '고양이네요!!!',
+    image_url: 'http://img.insight.co.kr/static/2018/09/12/700/z7n04ul8ig3y27w6l6ok.jpg',
+    contents : '강아지네요!!!',
     comment_cnt : 10,
     insert_dt : '2022-02-04 10:00:00',
   }
