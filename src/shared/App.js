@@ -12,6 +12,8 @@ import Header from '../components/Header';
 import PostWrite from '../pages/PostWrite';
 import Permit from './Permit';
 import PostDetail from '../pages/PostDetail';
+import Search from './Search';
+import Notification from '../pages/Notification';
 
 import { Grid } from '../elements';
 import { Button } from '../elements';
@@ -35,17 +37,19 @@ function App() {
   return (
     <React.Fragment>
       <Grid>
-        <Header></Header>
+        <Header />
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/write" exact component={PostWrite} />
           <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/search" exact component={Search} />
+          <Route path="/notification" exact component={Notification} />
         </ConnectedRouter>
       </Grid>
       <Permit>
-        <Button is_float text="+"></Button>
+        <Button is_float text="+" _onClick={() => {history.push('/write')}}></Button>
       </Permit>
     </React.Fragment>
   );

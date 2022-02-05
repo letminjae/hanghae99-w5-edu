@@ -25,7 +25,7 @@ const Image = (props) => {
 
     return (
         <React.Fragment>
-
+            <ImageDefault {...styles}></ImageDefault>
         </React.Fragment>
     )
 }
@@ -35,6 +35,15 @@ Image.defaultProps = {
     src: 'http://img.insight.co.kr/static/2018/09/12/700/z7n04ul8ig3y27w6l6ok.jpg',
     size: 36,
 };
+
+const ImageDefault = styled.div`
+    --size: ${(props) => props.size}px;
+    width: var(--size);
+    height: var(--size);
+
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+`
 
 const AspectOutter = styled.div`
     width: 100%

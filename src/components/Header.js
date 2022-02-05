@@ -18,15 +18,10 @@ const Header = (props) => {
 
 
 
-    // if (is_login && is_session) {
-    //     //쿠키가 잇으면 여기 보여줌(로그인상태)
-    //     return (
-
-    //     )
-    // }
-
-    <Permit>
-        <React.Fragment>
+    if (is_login && is_session) {
+        //쿠키가 잇으면 여기 보여줌(로그인상태)
+        return (
+            <React.Fragment>
             <Grid is_flex padding='4px 16px'>
                 <Grid>
                     <Text margin="0px" size='24px' bold>헬로</Text>
@@ -34,12 +29,14 @@ const Header = (props) => {
 
                 <Grid is_flex>
                     <Button text='내 정보'></Button>
-                    <Button text='알림'></Button>
+                    <Button text='알림' _onClick={() => {history.push('/notification')}}></Button>
                     <Button text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
                 </Grid>
             </Grid>
         </React.Fragment>
-    </Permit>
+
+        )
+    }
 
     return (
         <React.Fragment>
