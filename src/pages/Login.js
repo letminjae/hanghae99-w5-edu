@@ -4,6 +4,7 @@ import {Input, Text, Grid, Button} from '../elements'
 import { setCookie } from '../shared/Cookie'
 import { useDispatch } from 'react-redux';
 import {actionCreators as userActions} from '../redux/modules/user'
+import { emailCheck } from '../shared/common';
 
 const Login = (props) => {
 
@@ -14,8 +15,21 @@ const Login = (props) => {
 
     const login = () => {
 
+        console.log(id);
+
+        //정규표현식 aa_-.123Aaa@aa.com
+        let _reg = /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z](-_.0-9a-zA-Z)*.([a-zA-Z])*/;
+        _reg.test(id);
+
+        console.log(_reg.test(id))
+
         if(id === '' || pwd ===''){
             window.alert('아이디 혹은 비밀번호가 공란입니다');
+            return ;
+        }
+
+        if(!emailCheck(id)){
+            window.alert('이메일형식이 맞지않아요')
             return ;
         }
 

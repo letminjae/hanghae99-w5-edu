@@ -5,6 +5,7 @@ import {Input, Text, Grid, Button} from '../elements'
 import { useDispatch } from 'react-redux';
 
 import { actionCreators as userActions } from '../redux/modules/user';
+import { emailCheck } from '../shared/common';
 
 const Signup = () => {
     const dispatch = useDispatch();
@@ -17,10 +18,17 @@ const Signup = () => {
     const signup = () => {
 
         if(id === '' || pwd === '' || user_name === ''){
+            window.alert('아이디,패스워드,닉네임을 모두 입력하세요')
             return;
         }
 
+        if(!emailCheck(id)){
+            window.alert('이메일 형식이 맞지않아요')
+            return ;
+        }
+
         if(pwd !== pwd_check){
+            window.alert('패스워드와 패스워드 확인 문자가 일치하지 않아요')
             return;
         }
 

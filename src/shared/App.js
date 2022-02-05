@@ -9,7 +9,12 @@ import PostList from '../pages/PostList';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup'
 import Header from '../components/Header';
+import PostWrite from '../pages/PostWrite';
+import Permit from './Permit';
+import PostDetail from '../pages/PostDetail';
+
 import { Grid } from '../elements';
+import { Button } from '../elements';
 
 import { apiKey } from './firebase';
 
@@ -35,8 +40,13 @@ function App() {
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route path="/write" exact component={PostWrite} />
+          <Route path="/post/:id" exact component={PostDetail} />
         </ConnectedRouter>
       </Grid>
+      <Permit>
+        <Button is_float text="+"></Button>
+      </Permit>
     </React.Fragment>
   );
 }
