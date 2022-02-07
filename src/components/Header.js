@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
 import { history } from '../redux/configStore'
 import { apiKey } from '../shared/firebase';
-import Permit from '../shared/Permit';
+import NotiBadge from './NotiBadge';
 
 const Header = (props) => {
 
@@ -28,7 +28,7 @@ const Header = (props) => {
                     </Grid>
 
                     <Grid is_flex>
-                        <Button text='알림' _onClick={() => { history.push('/notification') }}></Button>
+                        <NotiBadge _onClick={() => { history.push('/notification') }}/>
                         <Button text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
                     </Grid>
                 </Grid>
@@ -41,7 +41,7 @@ const Header = (props) => {
         <React.Fragment>
             <Grid is_flex padding='4px 16px'>
                 <Grid>
-                    <Text margin="0px" size='24px' bold>헬로</Text>
+                    <Text margin="0px" size='24px' bold>헬로월드!</Text>
                 </Grid>
 
                 <Grid is_flex>
