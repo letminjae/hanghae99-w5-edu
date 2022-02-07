@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Text, Button } from '../elements'
+import { Grid, Text, Button, Image } from '../elements'
 import { getCookie, deleteCookie } from '../shared/Cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
@@ -22,18 +22,17 @@ const Header = (props) => {
         //쿠키가 잇으면 여기 보여줌(로그인상태)
         return (
             <React.Fragment>
-            <Grid is_flex padding='4px 16px'>
-                <Grid>
-                    <Text margin="0px" size='24px' bold>헬로</Text>
-                </Grid>
+                <Grid is_flex padding='4px 16px'>
+                    <Grid>
+                        <Text margin="0px" size='24px' bold>헬로월드!</Text>
+                    </Grid>
 
-                <Grid is_flex>
-                    <Button text='내 정보'></Button>
-                    <Button text='알림' _onClick={() => {history.push('/notification')}}></Button>
-                    <Button text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
+                    <Grid is_flex>
+                        <Button text='알림' _onClick={() => { history.push('/notification') }}></Button>
+                        <Button text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </React.Fragment>
+            </React.Fragment>
 
         )
     }

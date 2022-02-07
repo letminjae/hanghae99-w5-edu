@@ -23,7 +23,7 @@ const initialState = {
 };
 
 const user_initial = {
-    user_name: 'mean0',
+    user_name: 'minjae',
 }
 
 // middleware actions 미들웨어
