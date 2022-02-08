@@ -4,6 +4,7 @@ import { firestore } from '../../shared/firebase';
 import moment from 'moment'
 import { storage } from '../../shared/firebase';
 import { actionCreators as imageActions } from './image';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 //액션
 const SET_POST = 'SET_POST';
@@ -13,7 +14,7 @@ const LOADING = "LOADING"
 
 // 액션생성함수
 const setPost = createAction(SET_POST, (post_list, paging) => ({ post_list, paging }))
-const addPost = createAction(ADD_POST, (post) => ({ post }))
+const addPost = createAction(ADD_POST, (post, direction) => ({ post, direction }))
 const editPost = createAction(EDIT_POST, (post_id, post) => ({ post_id, post }))
 const loading = createAction(LOADING, (is_loading) => ({is_loading}))
 
@@ -34,6 +35,7 @@ const initialPost = {
     contents: '',
     comment_cnt: 0,
     insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+    direction: 'center',
 }
 
 // 미들웨어
@@ -50,11 +52,13 @@ const editPostFB = (post_id = null, post = {}) => {
         console.log(_post)
 
         const postDB = firestore.collection('post')
+
         if (_image === _post.image_url) {
             postDB.doc(post_id).update(post).then(doc => {
                 dispatch(editPost(post_id, { ...post }))
                 history.replace('/')
             });
+
             return;
         } else {
             const user_id = getState().user.user.uid;
@@ -62,7 +66,6 @@ const editPostFB = (post_id = null, post = {}) => {
       
             _upload.then((snapshot) => {
               snapshot.ref.getDownloadURL().then((url) => {
-                  console.log(url);
       
                   return url;
                 })
@@ -133,33 +136,10 @@ const getPostFB = (start = null, size = 3) => {
             dispatch(setPost(post_list, paging))
         })
 
-        return;
-
-        postDB.get().then((docs) => {
-            let post_list = [];
-            docs.forEach((doc) => {
-                // 파이어스토어에서 가지고 온 데이터들을 _post로 선언
-                let _post = doc.data();
-
-                // 키값만 뽑아서(Object.keys 이용) 배열로 만들어줌 예를 들어 ['comment_cnt', 'post_id'] 이런식으로..
-                let post = Object.keys(_post).reduce((acc, cur) => {
-                    // 값에 user_ 이란 단어가 포함되어있으면, 새배열 만들어 user_info에 reduce 시켜라
-                    if (cur.indexOf('user_') !== -1) {
-                        return { ...acc, user_info: { ...acc.user_info, [cur]: _post[cur] } }
-                    }
-                    // if조건 충족시키면 남아잇는 현재값들은 새배열에 넣어라
-                    return { ...acc, [cur]: _post[cur] }
-                }, { id: doc.id, user_info: {} }
-                )
-                post_list.push(post)
-            })
-
-            dispatch(setPost(post_list))
-        })
     }
 }
 
-const addPostFB = (contents = '',) => {
+const addPostFB = (contents = '', direction) => {
     return function (dispatch, getState, { history }) {
         const postDB = firestore.collection('post')
         const _user = getState().user.user;
@@ -173,6 +153,7 @@ const addPostFB = (contents = '',) => {
         const _post = {
             ...initialPost,
             contents: contents,
+            direction: direction,
             insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
         }
 
@@ -182,15 +163,16 @@ const addPostFB = (contents = '',) => {
 
         _upload.then(snapshot => {
             snapshot.ref.getDownloadURL().then(url => {
-                console.log(url);
 
                 return url;
             }).then(url => {
                 postDB.add({ ...user_info, ..._post, image_url: url }).then((doc) => {
-                    let post = { user_info, ..._post, id: doc.id }
+                    let post = { user_info, ..._post, id: doc.id, image_url: url }
                     dispatch(addPost(post))
                     history.replace('/');
+
                     dispatch(imageActions.setPreview(null));
+
                 }).catch((err) => { window.alert('앗! 포스트 작성에 문제가 있어요!', err) });
             }).catch((err) => {
                 window.alert('앗! 이미지 업로드에 문제가 있어요!')

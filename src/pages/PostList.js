@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Post from '../components/Post'
+import LeftPost from '../components/LeftPost'
+import RightPost from '../components/RightPost'
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 import InfinityScroll from '../shared/InfinityScroll';

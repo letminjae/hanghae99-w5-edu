@@ -18,7 +18,6 @@ const NotiBadge = (props) => {
         const notiDB = realtime.ref(`noti/${user_id}`);
 
         notiDB.on("value", (snapshot) => {
-            console.log(snapshot.val())
             setIsRead(snapshot.val().read)
         });
         return () => notiDB.off();
@@ -27,7 +26,7 @@ const NotiBadge = (props) => {
     return(
         <React.Fragment>
             <Badge color="secondary" variant="dot" invisible={is_read} onClick={notiCheck}>
-                <NotificationsIcon />
+                <NotificationsIcon color="secondary" />
             </Badge>
 
         </React.Fragment>

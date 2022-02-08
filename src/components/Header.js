@@ -6,6 +6,7 @@ import { actionCreators as userActions } from '../redux/modules/user';
 import { history } from '../redux/configStore'
 import { apiKey } from '../shared/firebase';
 import NotiBadge from './NotiBadge';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 const Header = (props) => {
 
@@ -24,13 +25,12 @@ const Header = (props) => {
             <React.Fragment>
                 <Grid is_flex padding='4px 16px'>
                     <Grid>
-                        <Text margin="0px" size='24px' bold>헬로월드!</Text>
+                        <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => {history.push('/')}}/>
                     </Grid>
 
-                    <Grid is_flex>
+
                         <NotiBadge _onClick={() => { history.push('/notification') }}/>
-                        <Button text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
-                    </Grid>
+                        <Button width='100px' margin='8px' padding='8px' text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
                 </Grid>
             </React.Fragment>
 
@@ -41,13 +41,11 @@ const Header = (props) => {
         <React.Fragment>
             <Grid is_flex padding='4px 16px'>
                 <Grid>
-                    <Text margin="0px" size='24px' bold>헬로월드!</Text>
+                    <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => {history.push('/')}}/>
                 </Grid>
 
-                <Grid is_flex>
-                    <Button text='로그인' _onClick={() => { history.push('/login') }}></Button>
-                    <Button text='회원가입' _onClick={() => { history.push('/signup') }}></Button>
-                </Grid>
+                    <Button width='100px' margin='2px' padding='8px' text='로그인' _onClick={() => { history.push('/login') }}></Button>
+                    <Button width='100px' margin='2px' padding='8px' text='회원가입' _onClick={() => { history.push('/signup') }}></Button>
             </Grid>
         </React.Fragment>
     )
