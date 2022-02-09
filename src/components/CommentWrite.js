@@ -15,7 +15,6 @@ const CommentWrite = (props) => {
     }
 
     const write = () => {
- 
        dispatch(commentActions.addCommentFB(post_id, comment_text))
        setCommentText('')
     }

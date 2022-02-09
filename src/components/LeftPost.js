@@ -21,7 +21,7 @@ const LeftPost = (props) => {
                 <Grid _onClick={() => history.push(`/post/${props.id}`)}>
                     <Box>
                         <Text margin="2em 1em;" >{props.contents}</Text>
-                        <Grid width="700px;" margin="2em 1em;">
+                        <Grid width="500px;" margin="2em 1em;">
                             <Image shape="rectangle" src={props.image_url} />
                         </Grid>
                     </Box>

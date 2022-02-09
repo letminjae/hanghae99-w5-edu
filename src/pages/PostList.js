@@ -16,44 +16,48 @@ const PostList = (props) => {
     const is_loading = useSelector((state) => state.post.is_loading);
     const paging = useSelector((state) => state.post.paging);
 
-    const {history} = props;
+    const { history } = props;
 
     React.useEffect(() => {
 
         if (post_list.length < 2) {
             dispatch(postActions.getPostFB());
         }
-
     }, [])
 
     return (
         <React.Fragment>
-            <Grid bg={"#EFF6FF"} padding="20px 0px 20px 0px">
-            <InfinityScroll
-                callNext={() => {
-                    dispatch(postActions.getPostFB(paging.next))
-                }}
-                is_next={paging.next ? true : false}
-                loading={is_loading}
-            >
-                {post_list.map((a, i) => {
-                    if (a.user_info.user_id === user_info?.uid) {
-                        return (
-                        <Grid bg="#ffffff" key={a.id} _onClick={() => {history.push(`/post/${a.id}`)}}>
-                            <Post {...a} is_me />
-                        </Grid>
-                        )
-                }else{
-                    return (
-                        <Grid bg="#ffffff" key={a.id} _onClick={() => {history.push(`/post/${a.id}`)}}>
-                            <Post {...a} />
-                        </Grid>
-                        )
-                }
-                
-            })}
-        </InfinityScroll>
-        </Grid>
+            <Grid padding="20px 0px 20px 0px">
+                <InfinityScroll
+                    callNext={() => {
+                        dispatch(postActions.getPostFB(paging.next))
+                    }}
+                    is_next={paging.next ? true : false}
+                    loading={is_loading}
+                >
+                    {post_list.map((p, i) => {
+                        if (user_info && p.user_info.user_id === user_info.uid) {
+                            if (p.direction === "center") {
+                                return <Post key={p.id} {...p} is_me />
+                            } else if (p.direction === "right") {
+                                return <RightPost key={p.id} {...p} is_me />
+                            } else if (p.direction === "left") {
+                                return <LeftPost key={p.id} {...p} is_me />
+                            }
+
+                        } else {
+                            if (p.direction === "center") {
+                                return <Post key={p.id} {...p} />
+                            } else if (p.direction === "right") {
+                                return <RightPost key={p.id} {...p} />
+                            } else if (p.direction === "left") {
+                                return <LeftPost key={p.id} {...p} />
+                            }
+
+                        }
+                    })}
+                </InfinityScroll>
+            </Grid>
         </React.Fragment >
     )
 }

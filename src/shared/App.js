@@ -14,6 +14,7 @@ import Permit from './Permit';
 import PostDetail from '../pages/PostDetail';
 import Search from './Search';
 import Notification from '../pages/Notification';
+import styled from 'styled-components';
 
 import { Grid } from '../elements';
 import { Button } from '../elements';
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <React.Fragment>
+    <Wrap>
       <Grid>
         <Header />
         <ConnectedRouter history={history}>
@@ -51,9 +53,17 @@ function App() {
       <Permit>
         <Button is_float text="+" _onClick={() => {history.push('/write')}}></Button>
       </Permit>
+      </Wrap>
     </React.Fragment>
   );
 }
+
+const Wrap = styled.div`
+max-width : 768px;
+min-height : 100vh;
+margin : auto;
+`
+
 
 export default App;
 

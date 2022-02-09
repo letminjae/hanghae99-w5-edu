@@ -22,10 +22,6 @@ const initialState = {
     is_login: false,
 };
 
-const user_initial = {
-    user_name: 'minjae',
-}
-
 // middleware actions 미들웨어
 const loginFB = (id, pwd) => {
     return function (dispatch, getState, { history }) {

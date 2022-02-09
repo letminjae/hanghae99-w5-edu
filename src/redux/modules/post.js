@@ -4,7 +4,6 @@ import { firestore } from '../../shared/firebase';
 import moment from 'moment'
 import { storage } from '../../shared/firebase';
 import { actionCreators as imageActions } from './image';
-import { CenterFocusStrong } from '@material-ui/icons';
 
 //액션
 const SET_POST = 'SET_POST';
@@ -21,7 +20,7 @@ const loading = createAction(LOADING, (is_loading) => ({is_loading}))
 //초기값
 const initialState = {
     list: [],
-    paging: {start: null, next: null, size: 3},
+    paging: {start: null, next: null, size: 3}, // 무한스크롤 - 페이징 정보 초기값
     is_loading: false,
 }
 

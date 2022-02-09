@@ -20,19 +20,19 @@ const Input = (props) => {
             <Grid>
                 {label ? '' : <Text margin='0px'>{label}</Text>}
                 {is_Submit ?
-                <ElInput type={type} 
-                placeholder={placeholder} 
-                onChange={_onChange} 
-                value={value} 
-                onKeyPress={ (e) => {if(e.key === "Enter"){
-                    onSubmit(e)}
+                    <ElInput type={type} 
+                    placeholder={placeholder} 
+                    onChange={_onChange} 
+                    value={value} 
+                    onKeyPress={ (e) => {if(e.key === "Enter"){
+                        onSubmit(e)}
+                        }
                     }
-                }
-                /> :
-                <ElInput type={type} 
-                placeholder={placeholder} 
-                onChange={_onChange} 
-                />
+                    /> :
+                    <ElInput type={type} 
+                    placeholder={placeholder} 
+                    onChange={_onChange} 
+                    />
                 }
             </Grid>
         </React.Fragment>

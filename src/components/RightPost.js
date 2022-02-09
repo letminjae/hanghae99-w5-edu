@@ -20,7 +20,7 @@ const RightPost = (props) => {
                 </Grid>
                 <Grid _onClick={() => history.push(`/post/${props.id}`)}>
                     <Box>
-                        <Grid margin="2em 1em;">
+                        <Grid margin="2em 1em;" width='500px'>
                             <Image shape="rectangle" src={props.image_url} />
                         </Grid>
                         <Text margin="2em 1em;">{props.contents}</Text>
