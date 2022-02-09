@@ -2,8 +2,15 @@ import React from 'react';
 import { Grid, Image, Text, Button } from '../elements'
 import { history } from '../redux/configStore';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const LeftPost = (props) => {
+    const dispatch = useDispatch()
+
+    const delPost = (post_id) => {
+        dispatch(postActions.deletePostFB(post_id))
+    }
 
     return (
         <React.Fragment>
@@ -15,12 +22,13 @@ const LeftPost = (props) => {
                     </Grid>
                     <Grid is_flex width='auto'>
                         <Text>{props.insert_dt}</Text>
-                        {props.is_me && <Button width='auto' margin='4px' padding='4px' _onClick={() => { history.push(`/write/${props.id}`) }}>수정</Button>}
+                        {props.is_me && <Button width='auto' margin='0px 0px 0px 8px' padding='4px' _onClick={() => { history.push(`/write/${props.id}`) }}>수정</Button>}
+                        {props.is_me && <Button width='auto' margin='0px 0px 0px 4px' padding='4px' _onClick={() => {delPost(props.id)}}>삭제</Button>}
                     </Grid>
                 </Grid>
                 <Grid _onClick={() => history.push(`/post/${props.id}`)}>
                     <Box>
-                        <Text margin="2em 1em;" >{props.contents}</Text>
+                        <Text margin="2em 1em;" size="18px">{props.contents}</Text>
                         <Grid width="500px;" margin="2em 1em;">
                             <Image shape="rectangle" src={props.image_url} />
                         </Grid>

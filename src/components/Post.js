@@ -1,8 +1,15 @@
 import React from 'react';
 import {Grid, Image, Text, Button}from '../elements'
 import { history } from '../redux/configStore';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Post = (props) => {
+    const dispatch = useDispatch()
+    
+    const delPost = (post_id) => {
+        dispatch(postActions.deletePostFB(post_id))
+    }
 
     return (
         <React.Fragment>
@@ -14,10 +21,11 @@ const Post = (props) => {
                     </Grid>
                     <Grid is_flex width='auto'>
                         <Text>{props.insert_dt}</Text>
-                        {props.is_me && <Button width='auto' margin='4px' padding='4px' _onClick={() => {history.push(`/write/${props.id}`)}}>수정</Button>}
+                        {props.is_me && <Button width='auto' margin='0px 0px 0px 8px' padding='4px' _onClick={() => { history.push(`/write/${props.id}`) }}>수정</Button>}
+                        {props.is_me && <Button width='auto' margin='0px 0px 0px 4px' padding='4px' _onClick={() => {delPost(props.id)}}>삭제</Button>}
                     </Grid>
                 </Grid>
-                <Grid padding='16px'>
+                <Grid padding='16px' size="18px">
                     <Text>{props.contents}</Text>
                 </Grid>
                 <Grid>
@@ -41,6 +49,7 @@ Post.defaultProps = {
     comment_cnt : 10,
     insert_dt : '2022-02-04 10:00:00',
     is_me: false,
+    bg: false,
   }
 
 export default Post;

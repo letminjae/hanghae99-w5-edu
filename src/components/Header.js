@@ -25,12 +25,14 @@ const Header = (props) => {
             <React.Fragment>
                 <Grid is_flex padding='4px 16px'>
                     <Grid>
-                        <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => {history.push('/')}}/>
+                        <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => { history.push('/') }} />
+                    </Grid>
+                    <Grid>
+                        <Text bold size="20px">minjaestagram</Text>
                     </Grid>
 
-
-                        <NotiBadge _onClick={() => { history.push('/notification') }}/>
-                        <Button width='100px' margin='8px' padding='8px' text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
+                    <NotiBadge _onClick={() => { history.push('/notification') }} />
+                    <Button width='100px' margin='8px' padding='8px' text='로그아웃' _onClick={() => { dispatch(userActions.logoutFB()) }}></Button>
                 </Grid>
             </React.Fragment>
 
@@ -41,11 +43,14 @@ const Header = (props) => {
         <React.Fragment>
             <Grid is_flex padding='4px 16px'>
                 <Grid>
-                    <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => {history.push('/')}}/>
+                    <HomeOutlinedIcon cursor="pointer" sx={{ fontSize: 50 }} color="secondary" onClick={() => { history.push('/') }} />
+                </Grid>
+                <Grid>
+                    <Text bold size="20px">minjaestagram</Text>
                 </Grid>
 
-                    <Button width='100px' margin='2px' padding='8px' text='로그인' _onClick={() => { history.push('/login') }}></Button>
-                    <Button width='100px' margin='2px' padding='8px' text='회원가입' _onClick={() => { history.push('/signup') }}></Button>
+                <Button width='100px' margin='2px' padding='8px' text='로그인' _onClick={() => { history.push('/login') }}></Button>
+                <Button width='150px' margin='2px' padding='8px' text='회원가입' _onClick={() => { history.push('/signup') }}></Button>
             </Grid>
         </React.Fragment>
     )

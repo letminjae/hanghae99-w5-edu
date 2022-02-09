@@ -32,6 +32,9 @@ const PostWrite = (props) => {
             history.goBack();
             return;
         }
+        if (!is_edit){
+            dispatch(imageActions.setPreview(""))
+        }
         if (is_edit) {
             dispatch(imageActions.setPreview(_post.image_url))
         }

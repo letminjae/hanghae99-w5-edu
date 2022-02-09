@@ -46,7 +46,7 @@ const Login = (props) => {
                 <Grid padding='16px 0px'>
                     <Input label='비밀번호' placeholder='비밀번호를 입력하세요' type='password' _onChange={(e) => {setPwd(e.target.value)}} is_submit onSubmit={login} value={pwd} />
                 </Grid>
-                <Button text="로그인하기" _onClick={() => {login()}}></Button>
+                <Button text="로그인하기" _onClick={() => {login()}} disabled={ pwd && id ? false : true}></Button>
             </Grid>
         </React.Fragment>
     )
