@@ -4,7 +4,6 @@ import { firestore } from '../../shared/firebase';
 import moment from 'moment'
 import { storage } from '../../shared/firebase';
 import { actionCreators as imageActions } from './image';
-import { LaptopWindows } from '@material-ui/icons';
 
 //액션
 const SET_POST = 'SET_POST';
@@ -38,6 +37,7 @@ const initialPost = {
     comment_cnt: 0,
     insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
     direction: 'center',
+    likes: 0,
 }
 
 // 미들웨어
@@ -158,6 +158,7 @@ const addPostFB = (contents = '', direction) => {
             contents: contents,
             direction: direction,
             insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+            likes: 0,
         }
 
         const _image = getState().image.preview

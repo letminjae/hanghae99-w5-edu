@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-    const {bold, color, size, children, margin} = props;
+    const {bold, color, size, children, margin, } = props;
 
     const styles = {
         bold : bold,
         color : color,
         size : size,
-        margin
+        margin : margin,
     }
     return (
         <P {...styles}>

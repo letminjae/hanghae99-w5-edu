@@ -125,7 +125,7 @@ const PostWrite = (props) => {
                 {is_edit ? (
                     <Button _onClick={editPost} margin="10px 0;">수정</Button>
                 ) : (
-                    <Button _onClick={updatePost} margin="10px 0;" disabled={contents && empty ? false : true}>작성</Button>
+                    <Button _onClick={updatePost} margin="10px 0;" disabled={contents && empty ? true : false}>작성</Button>
                 )}
             </Grid>
         </React.Fragment>

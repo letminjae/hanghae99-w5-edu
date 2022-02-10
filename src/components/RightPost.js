@@ -4,6 +4,7 @@ import { history } from '../redux/configStore';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
+import Like from '../shared/Like';
 
 const RightPost = (props) => {
     const dispatch = useDispatch()
@@ -34,8 +35,9 @@ const RightPost = (props) => {
                         <Text margin="2em 1em;" size="18px">{props.contents}</Text>
                     </Box>
                 </Grid>
-                <Grid padding='16px'>
+                <Grid is_flex padding='16px'>
                     <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    <Like {...props} />
                 </Grid>
             </Grid>
         </React.Fragment>

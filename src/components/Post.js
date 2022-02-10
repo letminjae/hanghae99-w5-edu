@@ -3,6 +3,7 @@ import {Grid, Image, Text, Button}from '../elements'
 import { history } from '../redux/configStore';
 import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
+import Like from '../shared/Like';
 
 const Post = (props) => {
     const dispatch = useDispatch()
@@ -25,14 +26,17 @@ const Post = (props) => {
                         {props.is_me && <Button width='auto' margin='0px 0px 0px 4px' padding='4px' _onClick={() => {delPost(props.id)}}>삭제</Button>}
                     </Grid>
                 </Grid>
-                <Grid padding='16px' size="18px">
-                    <Text>{props.contents}</Text>
-                </Grid>
-                <Grid>
-                    <Image shape='rectangle' src={props.image_url} />
-                </Grid>
-                <Grid padding='16px'>
+                <Grid _onClick={() => history.push(`/post/${props.id}`)}>
+                    <Grid padding='16px' size="18px">
+                        <Text>{props.contents}</Text>
+                    </Grid>
+                    <Grid>
+                        <Image shape='rectangle' src={props.image_url} />
+                    </Grid>
+                </Grid>    
+                <Grid is_flex padding='16px'>
                     <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    <Like {...props} />
                 </Grid>
             </Grid>
         </React.Fragment>
