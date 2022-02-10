@@ -85,4 +85,3 @@ export default Like
 // 클릭을한다면 채워진하트가 나온다 _onClick={clickLike}
 // 그런데 로그인안되어있다면 로그인 페이지로 간다 _onClick={clickLogin}
 // 만약 클릭을 한다면 setGetLikes를 이용해 true가 되고, 다시 누르면 false가 된다
-// 

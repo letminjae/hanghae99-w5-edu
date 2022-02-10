@@ -28,14 +28,17 @@ const Post = (props) => {
                 </Grid>
                 <Grid _onClick={() => history.push(`/post/${props.id}`)}>
                     <Grid padding='16px' size="18px">
-                        <Text>{props.contents}</Text>
+                        <Text size="18px">{props.contents}</Text>
                     </Grid>
                     <Grid>
                         <Image shape='rectangle' src={props.image_url} />
                     </Grid>
                 </Grid>    
                 <Grid is_flex padding='16px'>
-                    <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    <Text margin='0px' bold>좋아요 {props.likes}개</Text>
+                    <Grid width="80%">
+                        <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    </Grid>
                     <Like {...props} />
                 </Grid>
             </Grid>

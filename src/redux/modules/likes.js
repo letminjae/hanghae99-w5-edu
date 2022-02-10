@@ -73,34 +73,34 @@ const plusLikeFB  = (post_id, user_id) => {
 // 라이크 파이어스토어에서 빼기
 const minusLikeFB = (post_id, user_id) => {
     return function (dispatch, getState, {history}){
-        const likeDB = firestore.collection("like")
+        const likeDB = firestore.collection("like");
 
         likeDB.where('post_id', '==', post_id).get().then((docs) => {
-
-          let likes = [];
-
-          docs.forEach((doc) => {
-            likes.push({ ...doc.data(), id: doc.id });
-          });
-
-          const user_like = likes.filter((d) => {
-            return d.user_id === user_id;
-          });
-  
-          likeDB.doc(user_like[0].uid).delete().then((doc) => {
-              const postDB = firestore.collection('post');
-              const post = getState().post.list.find((p) => p.id === post_id);
-              const decrement = firebase.firestore.FieldValue.increment(-1);
-
-              postDB.doc(post_id).update({ likes: decrement }).then((res) => {
-                  dispatch(postActions.editPost(post_id, {likes: parseInt(post.likes) - 1,}),
-                  );
-                });
-              dispatch(isLike(false));
-            });
+        
+        let likes = [];
+        
+        docs.forEach((doc) => {
+          likes.push({ ...doc.data(), id: doc.id });
         });
-    };
+
+        const user_like = likes.filter((m) => {
+          return m.user_id === user_id;
+        });
+
+        likeDB.doc(user_like[0]).delete().then((doc) => {
+            const postDB = firestore.collection('post');
+            const post = getState().post.list.find((p) => p.id === post_id);
+            const decrement = firebase.firestore.FieldValue.increment(-1);
+            
+            postDB.doc(post_id).update({ likes: decrement }).then((res) => {
+                dispatch(postActions.editPost(post_id, {likes: parseInt(post.likes) - 1,}),
+                );
+              });
+            dispatch(isLike(false));
+          });
+      });
   };
+};
 
 
 //리듀서

@@ -36,7 +36,10 @@ const RightPost = (props) => {
                     </Box>
                 </Grid>
                 <Grid is_flex padding='16px'>
-                    <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    <Text margin='0px' bold>좋아요 {props.likes}개</Text>
+                    <Grid width="80%">
+                        <Text margin='0px' bold>댓글 {props.comment_cnt}개</Text>
+                    </Grid>
                     <Like {...props} />
                 </Grid>
             </Grid>

@@ -37,7 +37,7 @@ const initialPost = {
     comment_cnt: 0,
     insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
     direction: 'center',
-    likes: 0,
+    likes : 0,
 }
 
 // 미들웨어
